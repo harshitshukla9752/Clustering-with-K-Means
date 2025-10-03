@@ -70,6 +70,9 @@ data['Cluster'] = kmeans.fit_predict(X_scaled)
 sil_score = silhouette_score(X_scaled, data['Cluster'])
 print(f"Silhouette Score for K={optimal_k}: {sil_score:.4f}")
 
+# Save silhouette score to a file
+with open('outputs/silhouette_score.txt', 'w') as f:
+    f.write(f'Silhouette Score for K={optimal_k}: {sil_score:.4f}\n')
 # ----------------------------
 # 7. Visualize clusters in 2D using PCA
 # ----------------------------
@@ -88,7 +91,7 @@ sns.scatterplot(
     s=80
 )
 plt.title(f'K-Means Clusters (K={optimal_k})')
-plt.savefig('outputs/kmeans_clusters.png')
+plt.savefig('outputs/clusters.png') 
 plt.close()
 print("2D cluster plot saved to outputs/kmeans_clusters.png")
 
